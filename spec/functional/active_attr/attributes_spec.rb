@@ -188,8 +188,8 @@ module ActiveAttr
 
     context "defining dangerous attributes" do
       shared_examples "a dangerous attribute" do
-        it ".dangerous_attribute? is true" do
-          model_class.dangerous_attribute?(attribute_name).should be_true
+        it ".dangerous_attribute? is truthy" do
+          model_class.dangerous_attribute?(attribute_name).should be_truthy
         end
 
         it ".attribute raises DangerousAttributeError" do
@@ -202,8 +202,8 @@ module ActiveAttr
       end
 
       shared_examples "a whitelisted attribute" do
-        it ".dangerous_attribute? is false" do
-          model_class.dangerous_attribute?(attribute_name).should be_false
+        it ".dangerous_attribute? is falsey" do
+          model_class.dangerous_attribute?(attribute_name).should be_falsey
         end
 
         it ".attribute does not raise" do
@@ -217,7 +217,7 @@ module ActiveAttr
         it "can be set and get" do
           model_class.attribute attribute_name
           model = model_class.new
-          value = mock
+          value = double
           model.send "#{attribute_name}=", value
           model.send(attribute_name).should equal value
         end

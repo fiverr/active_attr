@@ -93,7 +93,7 @@ module ActiveAttr
             include Attributes
             attribute :name
             attribute :name
-          end.should have(1).attributes
+          end.attributes.size.should == 1
         end
 
         it "redefining an attribute replaces the attribute definition" do
@@ -103,7 +103,7 @@ module ActiveAttr
             attribute :name, :type => String
           end
 
-          klass.should have(1).attributes
+          klass.attributes.size.should eq 1
           klass.attributes[:name].should == AttributeDefinition.new(:name, :type => String)
         end
       end
@@ -122,7 +122,7 @@ module ActiveAttr
       it "defines an attribute reader that calls #attribute" do
         attributeless.attribute! :first_name
         model = attributeless.new
-        result = mock
+        result = double
         model.should_receive(:attribute).with("first_name").and_return(result)
         model.first_name.should equal result
       end
