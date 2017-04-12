@@ -6,15 +6,15 @@ shared_examples_for "ActiveModel" do
   begin
     require "minitest/assertions"
     include Minitest::Assertions
-
-    attr_writer :assertions
-
-    def assertions
-      @assertions ||= 0
-    end
   rescue LoadError
-    require "test/unit/assertions"
-    include Test::Unit::Assertions
+    require "minitest/unit"
+    include MiniTest::Assertions
+  end
+
+  attr_writer :assertions
+
+  def assertions
+    @assertions ||= 0
   end
 
   before { @model = subject }

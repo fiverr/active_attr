@@ -24,7 +24,7 @@ ActiveAttr is distributed as a rubygem [on rubygems.org][rubygems].
 [railscast poster]: http://railscasts.com/static/episodes/stills/326-activeattr.png
 [railscast]: http://railscasts.com/episodes/326-activeattr
 [rubygems]: http://rubygems.org/gems/active_attr
-[protected_attributes]: https://github.com/rails/protected_attributes
+[protected_attributes]: https://github.com/westonganger/protected_attributes_continued
 [strong_parameters]: https://github.com/rails/strong_parameters
 [speakerdeck slide]: https://speakerd.s3.amazonaws.com/presentations/4f31f1dec583b4001f008ec3/thumb_slide_0.jpg
 [speakerdeck]: https://speakerdeck.com/u/cgriego/p/models-models-every-where
@@ -158,11 +158,11 @@ are silently ignored.
 
     class Person
       include ActiveAttr::MassAssignment
-      attr_accessor :first_name, :last_name
+      attr_accessor :first_name, :last_name, :age
     end
 
-    person = Person.new(:first_name => "Chris")
-    person.attributes = { :last_name => "Griego" }
+    person = Person.new(:first_name => "Christopher", :last_name => "Griego")
+    person.attributes = { :first_name => "Chris", :age => 21 }
     person.first_name #=> "Chris"
     person.last_name #=> "Griego"
 
